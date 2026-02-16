@@ -13,11 +13,11 @@ const base =
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    'bg-neutral-900 text-white border border-neutral-700 hover:bg-neutral-800 focus:ring-neutral-500',
+    'bg-slate-800 text-white border border-slate-700 hover:bg-slate-700 focus:ring-slate-500 focus:ring-offset-slate-50',
   secondary:
-    'bg-white/5 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 hover:bg-white/10 focus:ring-neutral-400',
+    'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 focus:ring-slate-400 focus:ring-offset-slate-50',
   ghost:
-    'text-neutral-700 dark:text-neutral-300 hover:bg-white/5 border border-transparent focus:ring-neutral-400',
+    'text-slate-700 hover:bg-slate-100 border border-transparent focus:ring-slate-400 focus:ring-offset-slate-50',
 };
 
 export function Button({

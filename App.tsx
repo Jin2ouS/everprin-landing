@@ -1,61 +1,87 @@
+import React, { useEffect, useState } from 'react';
+import { copy } from './data/copy';
+import { HeroSection } from './components/HeroSection';
+import { BrandSection } from './components/BrandSection';
+import { PhilosophySection } from './components/PhilosophySection';
+import { SigyeongjaSection } from './components/SigyeongjaSection';
+import { RoleSection } from './components/RoleSection';
+import { MntfreeSection } from './components/MntfreeSection';
+import { CTASection } from './components/CTASection';
 
-import React, { useEffect } from 'react';
-import Hero from './components/Hero';
-import FreedomLoop from './components/FreedomLoop';
-
-const App: React.FC = () => {
+function Nav() {
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const observerOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('is-visible');
-      });
-    }, observerOptions);
-    const fadeSections = document.querySelectorAll('.fade-in-section');
-    fadeSections.forEach((section) => observer.observe(section));
-    return () => fadeSections.forEach((section) => observer.unobserve(section));
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-900/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/10 rounded-full blur-[150px]"></div>
-      </div>
-
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-8 md:px-12 flex justify-between items-center bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm">
-        <div className="text-2xl font-bold tracking-tighter text-white/90">
-          Everprin<span className="text-emerald-500">.</span>
-        </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-white/60">
-          <a href="#hero" className="hover:text-white transition-colors">Philosophy</a>
-          <a href="#freedom-loop" className="hover:text-white transition-colors">Freedom Loop</a>
-        </div>
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
+        scrolled
+          ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm'
+          : 'bg-transparent'
+      }`}
+      role="banner"
+    >
+      <nav
+        className="mx-auto flex max-w-3xl w-full items-center justify-between px-6 py-4"
+        aria-label="메인 네비게이션"
+      >
+        <a
+          href="#hero"
+          className="text-lg font-bold text-slate-800 hover:text-slate-600 transition-colors"
+        >
+          {copy.nav.brand}<span className="text-slate-500">.</span>
+        </a>
+        <ul className="flex flex-wrap items-center gap-6 text-sm">
+          {copy.nav.links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="text-slate-600 hover:text-slate-900 transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
+    </header>
+  );
+}
 
-      <main className="relative z-10">
-        <Hero />
-        <FreedomLoop />
+function Footer() {
+  return (
+    <footer
+      className="border-t border-slate-200 bg-slate-50/80 py-12 px-6"
+      role="contentinfo"
+    >
+      <div className="mx-auto max-w-3xl w-full text-center">
+        <p className="text-sm text-slate-600">{copy.footer.copyright}</p>
+        {copy.footer.subline && (
+          <p className="mt-2 text-sm text-slate-500">{copy.footer.subline}</p>
+        )}
+      </div>
+    </footer>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="min-h-screen bg-[#fafaf9] text-slate-900">
+      <Nav />
+      <main role="main">
+        <HeroSection />
+        <BrandSection />
+        <PhilosophySection />
+        <SigyeongjaSection />
+        <RoleSection />
+        <MntfreeSection />
+        <CTASection />
       </main>
-
-      <footer className="py-20 px-6 text-center border-t border-white/5 bg-black/40 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold mb-4">Everprin</h3>
-          <p className="text-white/40 mb-8 max-w-lg mx-auto leading-relaxed">
-            원칙을 세우고, 시장을 읽고, 자산을 쌓습니다. Everprin은 당신의 시스템 구축을 돕습니다.
-          </p>
-          <div className="flex justify-center gap-6 mb-12">
-            <a href="https://everprin.com/principles" className="text-white/60 hover:text-emerald-400 transition-colors">Principles</a>
-            <a href="https://everprin.com/markets" className="text-white/60 hover:text-emerald-400 transition-colors">Markets</a>
-            <a href="https://everprin.com/assets" className="text-white/60 hover:text-emerald-400 transition-colors">Assets</a>
-          </div>
-          <div className="text-white/20 text-xs">
-            © {new Date().getFullYear()} Everprin. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
-};
-
-export default App;
+}

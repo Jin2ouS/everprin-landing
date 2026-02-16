@@ -69,8 +69,20 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const observerOptions = { threshold: 0.08 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, observerOptions);
+    const sections = document.querySelectorAll('.fade-in-section');
+    sections.forEach((el) => observer.observe(el));
+    return () => sections.forEach((el) => observer.unobserve(el));
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#fafaf9] text-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-[#fafaf9] text-slate-900">
       <Nav />
       <main role="main">
         <HeroSection />

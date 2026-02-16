@@ -24,7 +24,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`py-16 md:py-24 ${className}`.trim()}
+      className={`fade-in-section py-16 md:py-24 ${className}`.trim()}
       aria-label={id ? undefined : undefined}
     >
       {content}

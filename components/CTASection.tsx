@@ -1,5 +1,6 @@
 import React from 'react';
 import { Section } from './Section';
+import { SectionTitle } from './SectionTitle';
 import { Button } from './Button';
 import { copy } from '../data/copy';
 
@@ -7,8 +8,8 @@ export function CTASection() {
   const { title, items } = copy.cta;
   return (
     <Section id="cta" className="bg-slate-50/80">
-      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-8">{title}</h2>
-      <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
+      <SectionTitle title={title} label="06" />
+      <div className="flex flex-col sm:flex-row gap-4 flex-wrap mt-8">
         {items.map((item, i) => (
           <Button
             key={i}

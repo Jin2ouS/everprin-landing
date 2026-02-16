@@ -66,34 +66,34 @@ const Hero: React.FC = () => {
           시간을 사는<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">자동화</span>
         </h1>
-        <p className="text-lg md:text-xl text-white/60 mb-12 font-light leading-relaxed">
+        <p className="text-lg md:text-xl text-white/60 mb-6 font-light leading-relaxed">
           반복을 시스템으로 바꾸면,<br className="md:hidden" /> 자유는 시간 위에 쌓입니다.
         </p>
-        
+        <p className="text-sm text-white/40 mb-8">Principles · Markets · Assets</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <a 
-            href="https://stock.everprin.com" 
+            href="https://everprin.com/principles" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center py-4 px-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all group"
           >
-            <span className="text-sm font-semibold group-hover:scale-105 transition-transform">Stock</span>
+            <span className="text-sm font-semibold group-hover:scale-105 transition-transform">Principles</span>
           </a>
           <a 
-            href="https://crypto.everprin.com" 
+            href="https://everprin.com/markets" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center py-4 px-6 rounded-2xl bg-emerald-500/80 hover:bg-emerald-400 text-black transition-all group"
           >
-            <span className="text-sm font-bold group-hover:scale-105 transition-transform">Crypto</span>
+            <span className="text-sm font-bold group-hover:scale-105 transition-transform">Markets</span>
           </a>
           <a 
-            href="https://cafe.everprin.com" 
+            href="https://everprin.com/assets" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center py-4 px-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/10 transition-all group"
           >
-            <span className="text-sm font-semibold group-hover:scale-105 transition-transform">Cafe</span>
+            <span className="text-sm font-semibold group-hover:scale-105 transition-transform">Assets</span>
           </a>
         </div>
       </div>

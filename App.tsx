@@ -1,34 +1,23 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Hero from './components/Hero';
 import FreedomLoop from './components/FreedomLoop';
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1
-    };
-
+    const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
     }, observerOptions);
-
     const fadeSections = document.querySelectorAll('.fade-in-section');
-    fadeSections.forEach(section => observer.observe(section));
-
-    return () => {
-      fadeSections.forEach(section => observer.unobserve(section));
-    };
+    fadeSections.forEach((section) => observer.observe(section));
+    return () => fadeSections.forEach((section) => observer.unobserve(section));
   }, []);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
-      {/* Background Gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-900/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/10 rounded-full blur-[150px]"></div>
@@ -53,13 +42,12 @@ const App: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold mb-4">Everprin</h3>
           <p className="text-white/40 mb-8 max-w-lg mx-auto leading-relaxed">
-            반복되는 수고를 자동화하고, 절약된 시간을 가치 있는 곳에 투자하십시오. 
-            Everprin은 당신의 시스템 구축을 돕습니다.
+            원칙을 세우고, 시장을 읽고, 자산을 쌓습니다. Everprin은 당신의 시스템 구축을 돕습니다.
           </p>
           <div className="flex justify-center gap-6 mb-12">
-            <a href="https://stock.everprin.com" className="text-white/60 hover:text-emerald-400 transition-colors">Stock</a>
-            <a href="https://crypto.everprin.com" className="text-white/60 hover:text-emerald-400 transition-colors">Crypto</a>
-            <a href="https://cafe.everprin.com" className="text-white/60 hover:text-emerald-400 transition-colors">Cafe</a>
+            <a href="https://everprin.com/principles" className="text-white/60 hover:text-emerald-400 transition-colors">Principles</a>
+            <a href="https://everprin.com/markets" className="text-white/60 hover:text-emerald-400 transition-colors">Markets</a>
+            <a href="https://everprin.com/assets" className="text-white/60 hover:text-emerald-400 transition-colors">Assets</a>
           </div>
           <div className="text-white/20 text-xs">
             © {new Date().getFullYear()} Everprin. All rights reserved.
